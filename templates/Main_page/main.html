@@ -1,0 +1,87 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+     <div class="container-fluid text-center pt-3" style="height: 160px">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active bg-info">
+              <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="..." class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+     </div>
+     <div class="container-fluid">
+        <div class="row align-items-start ms-2 me-2 mt-2">
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    {% if user.is_authenticated  %}
+                    <div class="card-header d-grid">
+                        <a class="btn btn-primary" href="{% url 'Dropy:add_drop' %}" role="button">
+                        Dodaj drop
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class="card-body row row-cols-1 pb-0">
+                        {% for drop in Drops %}
+                            <div class="col">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <p class="card-text">{{ drop.Dni_do }}</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row hstack">
+                                            <div class="col-lg-3">
+                                                <img src="{{ drop.Zdjęcia.url }}" class="rounded float-start" alt="..." style="height: 100px; width: 100px">
+                                            </div>   
+                                            <div class="col-lg-9">
+                                                <h5 class="card-title text-truncate"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
+                                                <p class="card-text">{{ drop.Typ }} | {{ drop.Cena }}<br>
+                                                {{ drop.Data }} | Godzina: {{ drop.Godzina }}</p>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>    
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    {% if user.is_authenticated  %}
+                    <div class="card-header d-grid">
+                            <a class="btn btn-primary" href="{% url 'Posty:add_post' %}" role="button">
+                            Dodaj post
+                            </a>
+                    </div>
+                    {% endif %}
+                    <div class="card-body hstack row row-cols-1 row-cols-md-2 g-3">
+                        {% for post in Posts %}
+                            <div class="col">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><a href="{% url 'Posty:post_details' post.pk %}">{{ post.Tytuł }}</a> | {{ post.Kategoria }}</h5>
+                                    <p class="card-text text-truncate">{{ post.Opis }}</p>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div> 
+            </div>
+        </div>
+     </div>
+{% endblock %}

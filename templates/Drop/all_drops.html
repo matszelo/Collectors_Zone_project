@@ -1,0 +1,28 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+    <div class="container-fluid">
+         <div class="col">
+            <div class="card">
+                {% if user.is_authenticated  %}
+                    <div class="card-header d-grid">
+                        <a class="btn btn-primary" href="{% url 'Dropy:add_drop' %}" role="button">
+                        Dodaj drop
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="card-body hstack row row-cols-1 row-cols-lg-2 g-3">
+                    {% for drop in Drops %}
+                        <div class="col">
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a> | {{ drop.Typ }}</h5>
+                                <p class="card-text text-truncate">{{ drop.Strona }}</p>
+                              </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div> 
+         </div>
+    </div>
+{% endblock %}

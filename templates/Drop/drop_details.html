@@ -1,0 +1,18 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+     <div class="container-fluid">
+            <h1>{{ drop.Tytuł }} | {{ drop.Typ }}</h1>
+            <small><a href="{{ drop.Strona }}">{{ drop.Strona }}</a></small>
+            <small>{{ drop.Cena }}</small>
+            <small>{{ drop.Data }}</small>
+            <small>{{ drop.Godzina }}</small>
+     </div>
+     {% if user.is_authenticated  %}
+         <a class="btn btn-warning" href="{% url 'Dropy:update_drop' drop.pk %}" role="button">
+         Edytuj drop
+         </a>
+         <a class="btn btn-danger" href="{% url 'Dropy:delete_drop' drop.pk %}" role="button">
+         Usuń drop
+         </a>
+     {% endif %}   
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Collectors Zone</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    </head>
+    <body class="d-flex flex-column min-vh-100" style="padding-top: 55px">
+        {% include 'Base_html/navbar.html' %}
+        {% block content %}
+        {% endblock %}
+        {% include 'Base_html/footer.html' %}
+    </body>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</html>

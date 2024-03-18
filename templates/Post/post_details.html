@@ -1,0 +1,15 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+     <div class="container-fluid">
+        <h1>{{ post.Tytuł }} | {{ post.Kategoria }}</h1>
+        <small>{{ post.Opis }}</small>
+     </div>
+     {% if user.is_authenticated  %}
+         <a class="btn btn-warning" href="{% url 'Posty:update_post' post.pk %}" role="button">
+         Edytuj post
+         </a>
+         <a class="btn btn-danger" href="{% url 'Posty:delete_post' post.pk %}" role="button">
+         Usuń post
+         </a>
+     {% endif %}
+{% endblock %}
