@@ -16,7 +16,7 @@ class Drop(models.Model):
     Cena = models.CharField(max_length=255)
     Data = models.DateField()
     Godzina = models.TimeField()
-    Zdjęcia = models.ImageField(upload_to='drops_images')
+    Zdjęcia = models.ImageField(upload_to='drops_images/')
 
     def __str__(self):
         return self.Tytuł
@@ -25,7 +25,7 @@ class Drop(models.Model):
     def Dni_do(self):
         dzisiaj = date.today()
         dni_do = self.Data - dzisiaj
-        dni_do_skrócone = str(dni_do).split('days', 1)[0]
+        dni_do_skrócone = str(dni_do).split('day', 1)[0]
         if self.Data == dzisiaj:
             dni_do_skrócone = "Drop dzisiaj"
         elif self.Data < dzisiaj:
