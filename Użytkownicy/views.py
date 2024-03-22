@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterForm, UpdateProfileForm
+from .forms import RegisterForm, UpdateProfileForm, ProfilePicForm
 from .models import Profile
 
 
@@ -48,11 +48,13 @@ def user_profile(request, pk):
 def update_profile(request, pk):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)
-        profile = Profile.objects.get(user_id=pk)
-        profile_form = UpdateProfileForm(request.POST or None, instance=current_user)
-        if profile_form.is_valid():
+        profile = Profile.objects.get(user__id=request.user.id)
+        user_form = UpdateProfileForm(request.POST or None, request.FILES or None, instance=current_user)
+        profile_form = ProfilePicForm(request.POST or None, request.FILES or None, instance=profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
             profile_form.save()
             return redirect('Użytkownicy:user_profile', pk)
-        return render(request, 'Profile/update_profile.html', {'profile': profile, 'profile_form':profile_form})
+        return render(request, 'Profile/update_profile.html', {'profile': profile, 'user_form':user_form, 'profile_form':profile_form})
     else:
         return redirect('Collectors_Zone:home')

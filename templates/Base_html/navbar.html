@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-expand-md fixed-top" style="background-color: #fd7e14;">
           <div class="container-fluid">
               <a class="navbar-brand" href="{% url 'Collectors_Zone:home' %}">Collectors Zone</a>
@@ -10,8 +11,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="background-color: white"></button>
               </div>
               <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-lg-3">
+                <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-lg-2">
                     {% if user.is_authenticated %}
+                        {% if user.profile.profile_pic %}
+                            <li class="nav-item">
+                                <img class="img-fluid rounded-circle mt-1" src="{{ user.profile.profile_pic.url }}" style="height: 35px; width: 35px">
+                            {% else %}
+                                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px">
+                            </li>
+                        {% endif %}    
                         <li class="nav-item">
                             <a class="nav-link active" href="{% url 'Użytkownicy:user_profile' request.user.id %}">Witaj, {{ user.username }}</a>
                         </li>
