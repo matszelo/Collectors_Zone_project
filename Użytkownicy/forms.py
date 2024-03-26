@@ -20,6 +20,7 @@ class RegisterForm(UserCreationForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
+    password = None
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
     class Meta:

@@ -61,7 +61,7 @@ def update_profile(request, pk):
         return redirect('Collectors_Zone:home')
 
 
-def password_change(request):
+def update_password(request):
     if request.user.is_authenticated:
         current_user = request.user
         if request.method == 'POST':
