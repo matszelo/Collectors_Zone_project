@@ -25,7 +25,7 @@ class UpdateProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email',)
+        fields = ('username', 'email')
 
     def __init__(self, *args, **kwargs):
         super(UpdateProfileForm, self).__init__(*args, **kwargs)
@@ -35,10 +35,11 @@ class UpdateProfileForm(forms.ModelForm):
 
 class ProfilePicForm(forms.ModelForm):
     profile_pic = forms.ImageField()
+    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
-        fields = ('profile_pic',)
+        fields = ('profile_pic', 'bio')
 
 
 class ChangePasswordForm(SetPasswordForm):

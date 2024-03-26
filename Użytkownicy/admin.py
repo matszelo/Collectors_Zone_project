@@ -11,7 +11,7 @@ class ProfileInUser(admin.StackedInline):
 
 class ProfileAdmin(admin.ModelAdmin):
     model = User
-    fields = ['username', 'password', 'email', 'is_active', 'is_staff', 'is_superuser', ]
+    fields = ['username', 'password', 'email', 'is_active', 'is_staff', 'is_superuser']
     inlines = [ProfileInUser]
 
 
