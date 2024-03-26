@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import Profile
@@ -38,3 +38,15 @@ class ProfilePicForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('profile_pic',)
+
+
+class ChangePasswordForm(SetPasswordForm):
+    class Meta:
+        model = User
+        fields = ('new_password1', 'new_password2')
+
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+        self.fields['new_password1'].widget.attrs.update({'class': 'form-control'})
+        self.fields['new_password2'].widget.attrs.update({'class': 'form-control'})

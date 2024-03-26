@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RegisterForm, UpdateProfileForm, ProfilePicForm
+from .forms import RegisterForm, UpdateProfileForm, ProfilePicForm, ChangePasswordForm
 from .models import Profile
 
 
@@ -55,6 +55,24 @@ def update_profile(request, pk):
             user_form.save()
             profile_form.save()
             return redirect('Użytkownicy:user_profile', pk)
-        return render(request, 'Profile/update_profile.html', {'profile': profile, 'user_form':user_form, 'profile_form':profile_form})
+        return render(request, 'Profile/update_profile.html',
+                      {'profile': profile, 'user_form': user_form, 'profile_form': profile_form})
     else:
         return redirect('Collectors_Zone:home')
+
+
+def password_change(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+        if request.method == 'POST':
+            form = ChangePasswordForm(current_user, request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('Użytkownicy:login_user')
+            else:
+                return redirect('Użytkownicy:password_change')
+        else:
+            form = ChangePasswordForm(current_user)
+            return render(request, 'Profile/password_change.html', {'form':form})
+    else:
+        return redirect('home')
