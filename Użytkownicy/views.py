@@ -15,7 +15,7 @@ def login_user(request):
             login(request, user)
             return redirect('Collectors_Zone:home')
         else:
-            return redirect('Użytkownicy:login_user')
+            return redirect('login_user')
 
     else:
         return render(request, 'Loging_and_Register/login.html', {})
@@ -32,7 +32,7 @@ def register_user(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('Użytkownicy:login_user')
+            return redirect('login_user')
 
     return render(request, 'Loging_and_Register/register.html', {'form': form})
 
@@ -54,7 +54,7 @@ def update_profile(request, pk):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('Użytkownicy:user_profile', pk)
+            return redirect('user_profile', pk)
         return render(request, 'Profile/update_profile.html',
                       {'profile': profile, 'user_form': user_form, 'profile_form': profile_form})
     else:
@@ -68,9 +68,9 @@ def update_password(request):
             form = ChangePasswordForm(current_user, request.POST)
             if form.is_valid():
                 form.save()
-                return redirect('Użytkownicy:login_user')
+                return redirect('login_user')
             else:
-                return redirect('Użytkownicy:password_change')
+                return redirect('password_change')
         else:
             form = ChangePasswordForm(current_user)
             return render(request, 'Profile/password_change.html', {'form':form})

@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <h1>Profil użytkownika: {{ profile.user.username }}</h1>
             {% if request.user.id == profile.user.id %}
-                <a href="{% url 'Użytkownicy:update_profile' request.user.id %}" class="btn btn-secondary">Edytuj profil</a>
+                <a href="{% url 'update_profile' request.user.id %}" class="btn btn-secondary">Edytuj profil</a>
             {% endif %}    
         </div>
     {% endif %}

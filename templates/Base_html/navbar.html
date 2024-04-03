@@ -21,7 +21,7 @@
                             </li>
                         {% endif %}    
                         <li class="nav-item">
-                            <a class="nav-link active" href="{% url 'Użytkownicy:user_profile' request.user.id %}">Witaj, {{ user.username }}</a>
+                            <a class="nav-link active" href="{% url 'user_profile' request.user.id %}">Witaj, {{ user.username }}</a>
                         </li>
                         <li class="border border-start border-black">
                         </li>
@@ -35,7 +35,7 @@
                             <a class="nav-link active" href="#">Forum</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light btn-outline-dark" href="{% url 'Użytkownicy:logout_user' %}" role="button" style="border-width: medium">
+                            <a class="btn btn-light btn-outline-dark" href="{% url 'logout_user' %}" role="button" style="border-width: medium">
                             Wyloguj się
                             </a> 
                         </li> 
@@ -48,7 +48,7 @@
                             <a class="nav-link active" href="{% url 'Dropy:all_drops' %}">Dropy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light btn-outline-dark" href="{% url 'Użytkownicy:login_user' %}" role="button" style="border-width: medium">
+                            <a class="btn btn-light btn-outline-dark" href="{% url 'login_user' %}" role="button" style="border-width: medium">
                             Zaloguj się
                             </a> 
                         </li>
