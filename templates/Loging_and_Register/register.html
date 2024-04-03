@@ -6,7 +6,7 @@
                 REJESTRACJA
             </div>    
             <div class="card-body pt-3 pb-0">
-                <form action="{% url 'Użytkownicy:register_user' %}" method="POST">
+                <form action="{% url 'register_user' %}" method="POST">
                     {% csrf_token %}
                         <div class="mb-2">
                         <label for="exampleInputText" class="form-label mb-0">Nazwa użytkownika</label>
@@ -38,7 +38,7 @@
                     <p>Już masz konto?</p>
                    </div>
                    <div class="col text-start ps-0" style="width: 120px; font-size: small">
-                    <a href="{% url 'Użytkownicy:login_user' %}" class="text-decoration-none">Zaloguj się</a>
+                    <a href="{% url 'login_user' %}" class="text-decoration-none">Zaloguj się</a>
                    </div>
                   </div>
                 </div>
