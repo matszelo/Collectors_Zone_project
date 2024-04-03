@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Użytkownicy',
     'Posty',
     'Dropy',
+    'Forum',
 ]
 
 MIDDLEWARE = [
