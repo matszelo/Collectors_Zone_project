@@ -1,0 +1,9 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+     <div class="container-fluid">
+            <h1>{{ topic.Tytuł }} | {{ topic.Kategoria }}</h1>
+            <small>{{ topic.Autor }}</small>
+            <small>{{ topic.Dodano }}</small>
+            <small>{{ topic.Opis }}</small>
+     </div>
+{% endblock %}

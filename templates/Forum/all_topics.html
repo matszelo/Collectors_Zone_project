@@ -1,0 +1,26 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+    <div class="container-fluid">
+         <div class="col">
+            <div class="card">
+                {% if user.is_authenticated  %}
+                    <div class="card-header d-grid">
+                        <a class="btn btn-primary" href="{% url 'Forum:add_topic' %}" role="button">
+                        Rozpocznij nowy temat
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {% for topic in Topics %}
+                            <div class="card mb-3">
+                              <div class="card-body">
+                                <h5 class="card-title"><a href="{% url 'Forum:topic_details' topic.pk %}">{{ topic.Tytuł }}</a> | {{ topic.Kategoria }} | {{ topic.Dodano }} | {{ topic.Autor }}</h5>
+                                <p class="card-text text-truncate">{{ topic.Opis }}</p>
+                              </div>
+                            </div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            </div> 
+         </div>
+    </div>
+{% endblock %}
