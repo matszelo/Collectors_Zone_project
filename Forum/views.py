@@ -1,7 +1,7 @@
 from datetime import timezone
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .forms import TopicForm
+from .forms import TopicForm, CommentForm
 from .models import Temat
 
 
@@ -11,8 +11,18 @@ def all_topics(request):
 
 
 def topic_details(request, pk):
+    if request.user.is_authenticated:
+        form = CommentForm(request.POST or None)
+        if request.method == 'POST':
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.Autor = request.user
+                comment.Temat = Temat.objects.get(pk=pk)
+                comment.save()
+                return redirect('Forum:topic_details', pk)
+
     topic = Temat.objects.get(pk=pk)
-    return render(request, 'Forum/topic_details.html', {'topic': topic})
+    return render(request, 'Forum/topic_details.html', {'topic': topic, 'form': form})
 
 
 def add_topic(request):

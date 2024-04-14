@@ -18,3 +18,13 @@ class Temat(models.Model):
 
     def __str__(self):
         return self.Tytuł
+
+
+class Komentarz(models.Model):
+    Temat = models.ForeignKey(Temat, related_name="komentarze", on_delete=models.CASCADE)
+    Autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    Tekst = models.TextField()
+    Dodano = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.Temat.Tytuł
