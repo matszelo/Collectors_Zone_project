@@ -28,8 +28,8 @@
         {%  else %}
             {%  for komentarz in topic.komentarze.all %}
                     <strong>
-                    {% if user.profile.profile_pic %}
-                        <img class="img-fluid rounded-circle mt-1" src="{{ user.profile.profile_pic.url }}" style="height: 35px; width: 35px">
+                    {% if komentarz.Autor.profile.profile_pic %}
+                        <img class="img-fluid rounded-circle mt-1" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px">
                     {% else %}
                         <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px">
                     {% endif %}
