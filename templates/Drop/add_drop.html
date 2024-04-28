@@ -1,5 +1,6 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% if user.is_authenticated and user.is_staff%}
      <div class="container-fluid">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -36,4 +37,8 @@
             </div>    
         </form>
      </div>
+    {% else %}
+        <h1>Tylko moderatorzy mogą dodawać dropy</h1>
+        <a href="{% url 'Dropy:all_drops' %}">Przejdź do listy dropów</a>
+    {% endif %}
 {% endblock %}

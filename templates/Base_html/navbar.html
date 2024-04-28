@@ -15,9 +15,9 @@
                     {% if user.is_authenticated %}
                         {% if user.profile.profile_pic %}
                             <li class="nav-item">
-                                <img class="img-fluid rounded-circle mt-1" src="{{ user.profile.profile_pic.url }}" style="height: 35px; width: 35px">
+                                <img class="img-fluid rounded-circle mt-1" src="{{ user.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
                             {% else %}
-                                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px">
+                                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
                             </li>
                         {% endif %}    
                         <li class="nav-item">

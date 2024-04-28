@@ -7,7 +7,7 @@
             <small>{{ drop.Data }}</small>
             <small>{{ drop.Godzina }}</small>
      </div>
-     {% if user.is_authenticated  %}
+     {% if user.is_authenticated and user.is_staff %}
          <a class="btn btn-warning" href="{% url 'Dropy:update_drop' drop.pk %}" role="button">
          Edytuj drop
          </a>

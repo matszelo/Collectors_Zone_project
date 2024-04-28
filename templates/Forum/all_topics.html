@@ -1,5 +1,6 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% if user.is_authenticated %}
     <div class="container-fluid">
          <div class="col">
             <div class="card">
@@ -23,4 +24,8 @@
             </div> 
          </div>
     </div>
+    {% else %}
+        <h1>Tylko zalogowani użytkownicy mogą korzystać z forum</h1>
+        <a href="{% url 'login_user' %}">Przejdź do strony logowania</a>
+    {% endif %}
 {% endblock %}

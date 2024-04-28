@@ -27,7 +27,7 @@
         <div class="row align-items-start ms-2 me-2 mt-2">
             <div class="col-md-4">
                 <div class="card mb-3">
-                    {% if user.is_authenticated  %}
+                    {% if user.is_authenticated and user.is_staff %}
                     <div class="card-header d-grid">
                         <a class="btn btn-primary" href="{% url 'Dropy:add_drop' %}" role="button">
                         Dodaj drop
@@ -61,7 +61,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card mb-3">
-                    {% if user.is_authenticated  %}
+                    {% if user.is_authenticated and user.is_staff %}
                     <div class="card-header d-grid">
                             <a class="btn btn-primary" href="{% url 'Posty:add_post' %}" role="button">
                             Dodaj post

@@ -22,6 +22,7 @@ def topic_details(request, pk):
                 return redirect('Forum:topic_details', pk)
 
     topic = Temat.objects.get(pk=pk)
+    form = CommentForm
     return render(request, 'Forum/topic_details.html', {'topic': topic, 'form': form})
 
 

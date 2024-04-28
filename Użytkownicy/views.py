@@ -73,6 +73,6 @@ def update_password(request):
                 return redirect('password_change')
         else:
             form = ChangePasswordForm(current_user)
-            return render(request, 'Profile/password_change.html', {'form':form})
+            return render(request, 'Profile/password_change.html', {'form': form})
     else:
-        return redirect('home')
+        return redirect('Collectors_Zone:home')

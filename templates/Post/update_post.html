@@ -1,5 +1,6 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% if user.is_authenticated and user.is_staff %}
      <div class="container-fluid">
         <form action="" method="POST">
             {% csrf_token %}
@@ -20,4 +21,8 @@
                 </div>
         </form>    
      </div>
+    {% else %}
+        <h1>Tylko moderatorzy mogą edytować posty</h1>
+        <a href="{% url 'Posty:all_posts' %}">Przejdź do listy postów</a>
+    {% endif %}
 {% endblock %}

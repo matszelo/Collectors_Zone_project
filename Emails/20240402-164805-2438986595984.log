@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?Reset_has=C5=82a_dla_konta_na_stronie_localhost=3A8000?=
+From: webmaster@localhost
+To: stoniiik@gmail.com
+Date: Tue, 02 Apr 2024 14:48:05 -0000
+Message-ID: <171206928539.26760.7518662690960050101@NEED-MORE-POWEEER.comp.sa>
+
+
+Otrzymujesz tę wiadomość, gdyż skorzystano z opcji resetu hasła dla Twojego konta na stronie localhost:8000.
+
+Aby wprowadzić nowe hasło, proszę przejść na stronę, której adres widnieje poniżej:
+
+http://localhost:8000/members/reset/MQ/c4v805-b662c454391c312b8710236dd81aed24/
+
+Twoja nazwa użytkownika, na wypadek, gdybyś zapomniał(a): admin
+
+Dzięki za korzystanie z naszej strony!
+
+Zespół localhost:8000
+
+
+
+-------------------------------------------------------------------------------
