@@ -33,7 +33,10 @@
                     {% else %}
                         <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px">
                     {% endif %}
-                     {{ komentarz.Autor }} - {{ komentarz.Dodano }}
+                    {% if komentarz.Autor.profile.user.id %}
+                        <a href="{% url 'user_profile' komentarz.Autor.profile.user.id %}">{{ komentarz.Autor }}</a>
+                    {% endif %}
+                    - {{ komentarz.Dodano }}
                     </strong>
                 <br/>
                 {{ komentarz.Tekst }}
