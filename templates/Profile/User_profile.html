@@ -1,8 +1,15 @@
 {% extends 'Base_html/base.html' %}
+{% load static %}
 {% block content %}
     {% if profile %}
         <div class="container-fluid">
+            {% if profile.profile_pic %}
+                <img class="img-fluid rounded-circle mt-1" src="{{ profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
+            {% else %}
+                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+            {% endif %} 
             <h1>Profil użytkownika: {{ profile.user.username }}</h1>
+            {{ profile.bio }}
             {% if request.user.id == profile.user.id %}
                 <a href="{% url 'update_profile' request.user.id %}" class="btn btn-secondary">Edytuj profil</a>
             {% endif %}    
