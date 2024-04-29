@@ -2,17 +2,27 @@
 {% load static %}
 {% block content %}
     {% if profile %}
-        <div class="container-fluid">
-            {% if profile.profile_pic %}
-                <img class="img-fluid rounded-circle mt-1" src="{{ profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
-            {% else %}
-                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
-            {% endif %} 
-            <h1>Profil użytkownika: {{ profile.user.username }}</h1>
-            {{ profile.bio }}
-            {% if request.user.id == profile.user.id %}
-                <a href="{% url 'update_profile' request.user.id %}" class="btn btn-secondary">Edytuj profil</a>
-            {% endif %}    
+        <div class="d-flex justify-content-center" style="margin-top: 180px">
+            <div class="card me-4 ms-4 shadow" style="width: 400px">
+                <div class="card-header text-center">
+                {% if profile.profile_pic %}
+                    <img class="img-fluid rounded-circle mt-2" src="{{ profile.profile_pic.url }}" style="height: 150px; width: 150px" alt="">
+                {% else %}
+                    <img class="img-fluid rounded-circle mt-2" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                {% endif %}
+                    <div class="mt-2">
+                        <h1>{{ profile.user.username }}</h1>
+                    </div>
+                </div>    
+                <div class="card-body pb-0">
+                    <div class="card-body border rounded mb-3" style="border: #0dcaf0">
+                      {{ profile.bio }}  
+                    </div>
+                {% if request.user.id == profile.user.id %}
+                    <a href="{% url 'update_profile' request.user.id %}" class="btn btn-sm fw-semibold d-flex justify-content-center mb-3" style="background-color: #fd7e14">Edytuj profil</a>
+                {% endif %}  
+                </div>
+            </div>
         </div>
     {% endif %}
 {% endblock %}
