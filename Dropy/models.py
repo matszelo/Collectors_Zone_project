@@ -2,7 +2,6 @@ from django.db import models
 from datetime import date, timedelta
 
 
-
 class Typ(models.Model):
     Nazwa = models.CharField(max_length=50)
 

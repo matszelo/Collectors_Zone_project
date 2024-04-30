@@ -1,16 +1,18 @@
 from django import forms
-from .models import Drop
+from django.forms import ModelForm
+from Dropy.models import Drop
 
 
-class DropForm(forms.ModelForm):
+class DropForm(ModelForm):
     class Meta:
         model = Drop
-        fields = ('Tytuł','Typ', 'Strona', 'Cena', 'Data', 'Godzina', 'Zdjęcia')
+        fields = ('Tytuł', 'Typ', 'Strona', 'Cena', 'Data', 'Godzina', 'Zdjęcia')
 
-    Data = forms.DateField(
-        widget=forms.DateInput(format='%d.%m.%Y'), input_formats=('%d.%m.%Y',)
-    )
-
-    Godzina = forms.TimeField(
-        widget=forms.TimeInput(format='%H:%M'), input_formats=('%H:%M',)
-    )
+        widgets = {
+            'Tytuł': forms.TextInput(attrs={'class': 'form-control'}),
+            'Typ': forms.Select(attrs={'class': 'form-control'}),
+            'Strona': forms.TextInput(attrs={'class': 'form-control'}),
+            'Cena': forms.TextInput(attrs={'class': 'form-control'}),
+            'Data': forms.DateInput(attrs={'class': 'form-control'}, format='%d.%m.%Y'),
+            'Godzina': forms.TimeInput(attrs={'class': 'form-control'}, format='%H:%M'),
+        }
