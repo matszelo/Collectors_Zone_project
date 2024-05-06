@@ -5,7 +5,7 @@
             <div class="card">
                 {% if user.is_authenticated and user.is_staff %}
                     <div class="card-header d-grid">
-                        <a class="btn btn-primary" href="{% url 'Posty:add_post' %}" role="button">
+                        <a class="btn btn-primary" href="{% url 'Posty:add_post' %}" role="button" >
                         Dodaj post
                         </a>
                     </div>
