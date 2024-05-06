@@ -2,10 +2,15 @@
 {% load static %}
 {% block content %}
     {% if user.is_authenticated %}
-     <div class="card mt-4 ms-4 me-4">
+     <div class="card mt-4 ms-4 me-4 mb-4">
             <div class="card-header">
-            <h1>{{ topic.Tytuł }} | {{ topic.Kategoria }}</h1>
-                <div class="card mt-3 mb-2">
+                <h1>{{ topic.Tytuł }} | {{ topic.Kategoria }}</h1>
+            </div>
+             <div class="card-body container-fluid">
+                <div class="card mt-1 mb-2">
+                    <div class="card-body fw-bold h5">
+                    {{ topic.Opis }}
+                    </div>
                     <div class="card-body fw-semibold">
                         {% if topic.Autor.profile.profile_pic %}
                         Autor: <img class="img-fluid rounded-circle" src="{{ topic.Autor.profile.profile_pic.url }}" style="height: 30px; width: 30px" alt="">
@@ -16,14 +21,7 @@
                         {% endif %}
                     </div>    
                 </div>
-            </div>
-             <div class="card-body">
-                <div class="card mt-1">
-                    <div class="card-body fw-bold">
-                    {{ topic.Opis }}
-                    </div>
-                </div>
-                 <div class="mt-3 mb-3 fw-bold h5">Komentarze:</div>
+                <div class="mt-3 mb-3 fw-bold h5">Komentarze:</div>
                 {% if not topic.komentarze.all %}
                     Brak komentarzy...
                     <br>
@@ -42,18 +40,19 @@
                     {% endif %}  
                 {% else %}
                     {% for komentarz in topic.komentarze.all %}
-                            {% if komentarz.Autor.profile.profile_pic %}
-                                <img class="img-fluid rounded-circle mt-1" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
-                            {% else %}
-                                <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
-                            {% endif %}
-                            {% if komentarz.Autor.profile.user.id %}
-                                <a href="{% url 'user_profile' komentarz.Autor.profile.user.id %}">{{ komentarz.Autor }}</a>
-                            {% endif %}
-                            - {{ komentarz.Dodano }}
+                        <strong>
+                        {% if komentarz.Autor.profile.profile_pic %}
+                            <img class="img-fluid rounded-circle mt-1" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
+                        {% else %}
+                            <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                        {% endif %}
+                        {% if komentarz.Autor.profile.user.id %}
+                            <a href="{% url 'user_profile' komentarz.Autor.profile.user.id %}">{{ komentarz.Autor }}</a>
+                        {% endif %}
+                        - {{ komentarz.Dodano }}
+                        </strong>
                         <br>
-                        {{ komentarz.Tekst }}
-                        <br><br>
+                        <p class="fw-medium">{{ komentarz.Tekst }}</p>
                     {% endfor %}
                     <br/>
                     {% if form %}
