@@ -1,6 +1,6 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
-    {% if user.is_authenticated and user.is_staff%}
+    {% if user.is_authenticated and user.is_staff %}
      <div class="d-flex justify-content-center" style="margin-top: 100px">
         <div class="card me-4 ms-4 shadow" style="width: 400px">
             <div class="card-header text-center">
@@ -27,7 +27,7 @@
                 </form>
             </div>
         </div>
-     </div>   
+     </div>
     {% else %}
         <h1>Tylko zalogowani użytkownicy mogą dodawać posty na forum</h1>
         <a href="{% url 'login_user' %}">Przejdź do strony logowania</a>
