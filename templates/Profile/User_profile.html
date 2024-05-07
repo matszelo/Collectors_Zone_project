@@ -21,6 +21,7 @@
                 {% if request.user.id == profile.user.id %}
                     <a href="{% url 'update_profile' request.user.id %}" class="btn btn-sm fw-semibold d-flex justify-content-center mb-3" style="background-color: #fd7e14">Edytuj profil</a>
                 {% endif %}  
+                    <a href="{% url 'update_password' %}" class="btn btn-sm fw-semibold text-white d-flex justify-content-center mt-2 mb-3" style="background-color: #6c757d">Zmień hasło</a>
                 </div>
             </div>
         </div>

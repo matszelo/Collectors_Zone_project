@@ -45,6 +45,12 @@ def user_profile(request, pk):
         return redirect('Collectors_Zone:home')
 
 
+def delete_profile(request, pk):
+    profile = User.objects.get(pk=pk)
+    profile.delete()
+    return redirect('Collectors_Zone:home')
+
+
 def update_profile(request, pk):
     if request.user.is_authenticated:
         current_user = User.objects.get(id=request.user.id)

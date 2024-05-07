@@ -34,7 +34,7 @@
                     <div class="border border-bottom mt-1 mb-1 w-75">
                     </div>
                 </div>
-                <a href="{% url 'update_password'%}" class="btn btn-sm fw-semibold text-white d-flex justify-content-center mt-2 mb-3" style="background-color: #6c757d">Zmień hasło</a>
+                <a href="{% url 'delete_profile' request.user.id %}" class="btn btn-danger btn-sm fw-semibold d-flex justify-content-center mb-3 mt-2">Usuń konto</a>
             </div>
         </div>
     </div>    
