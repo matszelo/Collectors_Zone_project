@@ -34,7 +34,11 @@ class Drop(models.Model):
             dni_do_skrócone = "Drop jutro"
         elif dzisiaj + timedelta(days=2) <= self.Data <= dzisiaj + timedelta(days=4):
             dni_do_skrócone = "Do dropu pozostały " + dni_do_skrócone + "dni"
-        elif self.Data >= dzisiaj + timedelta(days=5):
+        elif dzisiaj + timedelta(days=5) <= self.Data <= dzisiaj + timedelta(days=21):
+            dni_do_skrócone = "Do dropu pozostało " + dni_do_skrócone + "dni"
+        elif dzisiaj + timedelta(days=22) <= self.Data <= dzisiaj + timedelta(days=24):
+            dni_do_skrócone = "Do dropu pozostały " + dni_do_skrócone + "dni"
+        elif self.Data >= dzisiaj + timedelta(days=25):
             dni_do_skrócone = "Do dropu pozostało " + dni_do_skrócone + "dni"
 
         return dni_do_skrócone
