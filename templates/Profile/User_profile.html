@@ -8,7 +8,7 @@
                 {% if profile.profile_pic %}
                     <img class="img-fluid rounded-circle mt-2" src="{{ profile.profile_pic.url }}" style="height: 150px; width: 150px" alt="">
                 {% else %}
-                    <img class="img-fluid rounded-circle mt-2" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                    <img class="img-fluid rounded-circle mt-2" src="{% static 'images/blank-profile-picture.png' %}" style="height: 150px; width: 150px" alt="">
                 {% endif %}
                     <div class="mt-2">
                         <h1>{{ profile.user.username }}</h1>
@@ -20,8 +20,8 @@
                     </div>
                 {% if request.user.id == profile.user.id %}
                     <a href="{% url 'update_profile' request.user.id %}" class="btn btn-sm fw-semibold d-flex justify-content-center mb-3" style="background-color: #fd7e14">Edytuj profil</a>
-                {% endif %}  
                     <a href="{% url 'update_password' %}" class="btn btn-sm fw-semibold text-white d-flex justify-content-center mt-2 mb-3" style="background-color: #6c757d">Zmień hasło</a>
+                {% endif %}      
                 </div>
             </div>
         </div>

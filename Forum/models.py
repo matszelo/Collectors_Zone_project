@@ -10,7 +10,7 @@ class Kategoria(models.Model):
 
 
 class Temat(models.Model):
-    Autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    Autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     Tytuł = models.CharField(max_length=255)
     Kategoria = models.ForeignKey(Kategoria, on_delete=models.CASCADE)
     Opis = models.TextField()
@@ -22,7 +22,7 @@ class Temat(models.Model):
 
 class Komentarz(models.Model):
     Temat = models.ForeignKey(Temat, related_name="komentarze", on_delete=models.CASCADE)
-    Autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    Autor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     Tekst = models.TextField()
     Dodano = models.DateTimeField(auto_now_add=True)
 

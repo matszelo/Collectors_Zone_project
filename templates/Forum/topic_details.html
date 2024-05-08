@@ -13,12 +13,16 @@
                     </div>
                     <div class="card-body fw-semibold">
                         {% if topic.Autor.profile.profile_pic %}
-                        Autor: <img class="img-fluid rounded-circle" src="{{ topic.Autor.profile.profile_pic.url }}" style="height: 30px; width: 30px" alt="">
+                            Autor: <img class="img-fluid rounded-circle" src="{{ topic.Autor.profile.profile_pic.url }}" style="height: 30px; width: 30px" alt="">
+                        {% else %}
+                            Autor: <img class="img-fluid rounded-circle" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                        {% endif %}    
                         {% if topic.Autor.profile.user.id %}
-                        <a href="{% url 'user_profile' topic.Autor.profile.user.id %}">{{ topic.Autor }}</a><br>
+                            <a href="{% url 'user_profile' topic.Autor.profile.user.id %}">{{ topic.Autor }}</a><br>
+                        {% else %} 
+                            Konto usunięte<br>
                         {% endif %}
                         Dodano: {{ topic.Dodano }}
-                        {% endif %}
                     </div>    
                 </div>
                 <div class="mt-3 mb-3 fw-bold h5">Komentarze:</div>
@@ -42,12 +46,14 @@
                     {% for komentarz in topic.komentarze.all %}
                         <strong>
                         {% if komentarz.Autor.profile.profile_pic %}
-                            <img class="img-fluid rounded-circle mt-1" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
+                            <img class="img-fluid rounded-circle" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
                         {% else %}
-                            <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                            <img class="img-fluid rounded-circle" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
                         {% endif %}
                         {% if komentarz.Autor.profile.user.id %}
                             <a href="{% url 'user_profile' komentarz.Autor.profile.user.id %}">{{ komentarz.Autor }}</a>
+                        {% else %}
+                            Konto usunięte
                         {% endif %}
                         - {{ komentarz.Dodano }}
                         </strong>
