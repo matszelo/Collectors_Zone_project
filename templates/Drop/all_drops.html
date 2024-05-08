@@ -11,7 +11,7 @@
                     </div>
                 {% endif %}
                 <div class="card-body hstack row row-cols-1 row-cols-lg-2 g-3">
-                    {% for drop in Drops %}
+                    {% for drop in drops %}
                         <div class="col">
                             <div class="card">
                               <div class="card-body">
@@ -23,6 +23,27 @@
                     {% endfor %}
                 </div>
             </div> 
-         </div>
+         </div><br>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            {% if drops.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo; Pierwsza</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="?page={{ drops.previous_page_number }}">Poprzednia</a></li>    
+            {% endif %}
+            <li class="page-item"><a class="page-link">Strona {{ drops.number }} z {{ drops.paginator.num_pages }}</a></li>
+            {% if drops.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ drops.next_page_number }}">Następna</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ drops.paginator.num_pages }}" aria-label="Next">
+                    <span aria-hidden="true">Ostatnia &raquo;</span>
+                  </a>
+                </li>
+            {% endif %}  
+          </ul>
+        </nav>
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .forms import DropForm
 from .models import Drop
@@ -5,7 +6,10 @@ from .models import Drop
 
 def all_drops(request):
     Drops = Drop.objects.all().order_by('-Data')
-    return render(request, 'Drop/all_drops.html', {'Drops': Drops})
+    paginator = Paginator(Drop.objects.all(), 12)
+    page = request.GET.get('page')
+    drops = paginator.get_page(page)
+    return render(request, 'Drop/all_drops.html', {'Drops': Drops, 'drops': drops})
 
 
 def drop_details(request, pk):

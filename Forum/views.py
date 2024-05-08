@@ -1,5 +1,6 @@
 from datetime import timezone
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from .forms import TopicForm, CommentForm
 from .models import Temat
@@ -7,7 +8,10 @@ from .models import Temat
 
 def all_topics(request):
     Topics = Temat.objects.all().order_by('-Dodano')
-    return render(request, 'Forum/all_topics.html', {'Topics': Topics})
+    paginator = Paginator(Temat.objects.all(), 6)
+    page = request.GET.get('page')
+    topics = paginator.get_page(page)
+    return render(request, 'Forum/all_topics.html', {'Topics': Topics, 'topics': topics})
 
 
 def topic_details(request, pk):
