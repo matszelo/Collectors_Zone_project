@@ -16,7 +16,7 @@ class Drop(models.Model):
     Cena = models.CharField(max_length=255)
     Data = models.DateField()
     Godzina = models.TimeField()
-    Zdjęcia = models.ImageField(upload_to='drops_images/')
+    Zdjęcia = models.ImageField(null=True, blank=True, upload_to='drops_images/')
 
     def __str__(self):
         return self.Tytuł

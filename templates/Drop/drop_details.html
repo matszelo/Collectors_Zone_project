@@ -1,6 +1,7 @@
 {% extends 'Base_html/base.html' %}
 {% load static %}
 {% block content %}
+    {% if drop %}
          <div class="card mt-4 ms-4 me-4">
             <div class="card-header">
                 <h1>{{ drop.Tytuł }} - {{ drop.Typ }}</h1>
@@ -9,11 +10,15 @@
                 <div class="container-fluid">
                     <div class="row justify-content-start">
                         <div class="col-2">
-                            <img class="img mt-2" src="{{ drop.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
+                            {% if drop.Zdjęcia %}
+                                <img class="img mt-2" src="{{ drop.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
+                            {% else %}
+                                <img class="img mt-2" src="{% static 'images/blank-drop-picture.png' %}" style="height: 200px; width: 200px" alt="">
+                            {% endif %}
                         </div>
                         <div class="col-6 fw-semibold">
                             Strona: <a href="{{ drop.Strona }}">{{ drop.Strona }}</a><br>
-                            Cena: {{ drop.Cena }}<br>
+                            Cena: {{ drop.Cena }} zł<br>
                             Data dropu: {{ drop.Data }}<br>
                             Godzina dropu: {{ drop.Godzina }}
                         </div>
@@ -39,4 +44,5 @@
                 {% endif %}
             </div>    
          </div>
+    {% endif %}
 {% endblock %}
