@@ -51,7 +51,7 @@
                                                     <img class="img mt-2 rounded" src="{% static 'images/blank-drop-picture.png' %}" style="height: 90px; width: 90px" alt="">
                                                 {% endif %}
                                             </div>   
-                                            <div class="col-7 ms-5">
+                                            <div class="col-7 col-md-6 ms-5">
                                                 <h5 class="card-title text-truncate"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
                                                 <p class="card-text fw-semibold">{{ drop.Typ }}<br>
                                                 {{ drop.Data }} | Godzina: {{ drop.Godzina }}</p>

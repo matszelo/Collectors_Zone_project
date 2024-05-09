@@ -5,11 +5,17 @@
         <div class="card-header">
             <h1>{{ post.Tytuł }} - {{ post.Kategoria }}</h1>
         </div>    
-        <div class="card-body fw-semibold">
-              {% if post.Zdjęcia %}
-                  <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
-              {% endif %}
-              {{ post.Opis }}
+        <div class="card-body">
+            <div class="row">
+                <div class="col text-start">
+                  {% if post.Zdjęcia %}
+                      <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
+                  {% endif %}
+                </div>
+                <div class="col-10 fw-semibold">
+                    {{ post.Opis }}
+                </div>
+            </div>
         </div>   
         <div class="card-footer">
             {% if user.is_authenticated and user.is_staff %}
