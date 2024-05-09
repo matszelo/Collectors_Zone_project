@@ -6,21 +6,21 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-              <div class="offcanvas-header bg-dark text-white">
+              <div class="offcanvas-header text-dark" style="background-color: #fd7e14;">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="background-color: white"></button>
               </div>
               <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 column-gap-lg-2">
+                <ul class="navbar-nav fw-semibold justify-content-end flex-grow-1 column-gap-lg-2">
                     {% if user.is_authenticated %}
                         {% if user.profile.profile_pic %}
-                            <li class="nav-item">
+                            <li class="nav-item text-center">
                                 <img class="img-fluid rounded-circle mt-1" src="{{ user.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
                             {% else %}
                                 <img class="img-fluid rounded-circle mt-1" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
                             </li>
                         {% endif %}    
-                        <li class="nav-item">
+                        <li class="nav-item text-center">
                             <a class="nav-link active" href="{% url 'user_profile' request.user.id %}">Witaj, {{ user.username }}</a>
                         </li>
                         <li class="border border-start border-black">
@@ -38,7 +38,7 @@
                             <a class="nav-link active" href="{% url 'Collectors_Zone:search' %}">Szukaj</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light btn-outline-dark" href="{% url 'logout_user' %}" role="button" style="border-width: medium">
+                            <a class="btn btn-light btn-outline-dark fw-semibold d-flex justify-content-center" href="{% url 'logout_user' %}" role="button" style="border-width: medium">
                             Wyloguj się
                             </a> 
                         </li> 
@@ -54,7 +54,7 @@
                             <a class="nav-link active" href="{% url 'Collectors_Zone:search' %}">Szukaj</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light btn-outline-dark" href="{% url 'login_user' %}" role="button" style="border-width: medium">
+                            <a class="btn btn-light btn-outline-dark fw-semibold d-flex justify-content-center" href="{% url 'login_user' %}" role="button" style="border-width: medium">
                             Zaloguj się
                             </a> 
                         </li>
