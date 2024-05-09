@@ -7,14 +7,18 @@
         </div>    
         <div class="card-body">
             <div class="row">
+                {% if post.Zdjęcia %}
                 <div class="col text-start">
-                  {% if post.Zdjęcia %}
                       <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
-                  {% endif %}
                 </div>
                 <div class="col-10 fw-semibold">
                     {{ post.Opis }}
                 </div>
+                {% else %}
+                <div class="col-12 fw-semibold">
+                    {{ post.Opis }}
+                </div>    
+                {% endif %}
             </div>
         </div>   
         <div class="card-footer">
