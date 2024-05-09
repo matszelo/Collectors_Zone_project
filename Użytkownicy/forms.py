@@ -34,7 +34,7 @@ class UpdateProfileForm(forms.ModelForm):
 
 
 class ProfilePicForm(forms.ModelForm):
-    profile_pic = forms.ImageField()
+    profile_pic = None
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     class Meta:
