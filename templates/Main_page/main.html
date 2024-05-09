@@ -44,16 +44,16 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row hstack">
-                                            <div class="col-lg-3">
+                                            <div class="col-3 ms-1">
                                                 {% if drop.Zdjęcia %}
-                                                    <img src="{{ drop.Zdjęcia.url }}" class="rounded float-start" alt="..." style="height: 100px; width: 100px">
+                                                    <img class="rounded" src="{{ drop.Zdjęcia.url }}" alt="..." style="height: 100px; width: 100px">
                                                 {% else %}
-                                                    <img class="img mt-2" src="{% static 'images/blank-drop-picture.png' %}" style="height: 90px; width: 90px" alt="">
+                                                    <img class="img mt-2 rounded" src="{% static 'images/blank-drop-picture.png' %}" style="height: 90px; width: 90px" alt="">
                                                 {% endif %}
                                             </div>   
-                                            <div class="col-lg-9">
+                                            <div class="col-7 ms-5">
                                                 <h5 class="card-title text-truncate"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
-                                                <p class="card-text">{{ drop.Typ }} | {{ drop.Cena }} zł<br>
+                                                <p class="card-text fw-semibold">{{ drop.Typ }}<br>
                                                 {{ drop.Data }} | Godzina: {{ drop.Godzina }}</p>
                                             </div>    
                                         </div>

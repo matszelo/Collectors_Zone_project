@@ -1,4 +1,5 @@
 {% extends 'Base_html/base.html' %}
+{% load static %}
 {% block content %}
     <div class="container-fluid mt-3 mb-3">
          <div class="col">
@@ -10,14 +11,19 @@
                         </a>
                     </div>
                 {% endif %}
-                <div class="card-body hstack row row-cols-1 row-cols-lg-2 g-3">
+                <div class="card-body hstack row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3">
                     {% for drop in drops %}
                         <div class="col">
                             <div class="card">
-                              <div class="card-body">
-                                <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a> | {{ drop.Typ }}</h5>
-                                <p class="card-text text-truncate">{{ drop.Strona }}</p>
-                              </div>
+                                {% if drop.Zdjęcia %}
+                                    <img class="img rounded" src="{{ drop.Zdjęcia.url }}" alt="">
+                                {% else %}
+                                    <img class="img rounded" src="{% static 'images/blank-drop-picture.png' %}" alt="">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
+                                    {{ drop.Typ }}
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

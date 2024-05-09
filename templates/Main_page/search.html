@@ -1,0 +1,54 @@
+{% extends 'Base_html/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid mt-3 mb-3">
+         <div class="col">
+            <div class="card">
+                <div class="card-header d-grid justify-content-center">
+                    <h1>Wyszukaj na stronie</h1>
+                    <form method="POST" action="{% url 'Collectors_Zone:search' %}">
+                        {% csrf_token %}
+                        <label for="exampleInputText" class="form-label mb-0"></label>
+                        <input type="text" class="form-control" name="searched" id="exampleInputText">
+                        <div class="d-flex justify-content-center"> 
+                            <button type="submit" class="btn btn-sm fw-semibold mt-2" style="background-color: #fd7e14">Szukaj</button>  
+                        </div>    
+                    </form><br>
+                </div>    
+                <div class="card-body">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="col">
+                                <div class="card mb-3">
+                                  <div class="card-body">
+                                    <h5 class="card-title"><a href="{% url 'Posty:post_details' post.pk %}">{{ post.Tytuł }}</a> | {{ post.Kategoria }}</h5>
+                                    <p class="card-text text-truncate">{{ post.Opis }}</p>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if drops %}
+                        <div class="card-body hstack row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3">
+                        {% for drop in drops %}
+                            <div class="col">
+                                <div class="card">
+                                    {% if drop.Zdjęcia %}
+                                        <img class="img rounded" src="{{ drop.Zdjęcia.url }}" alt="">
+                                    {% else %}
+                                        <img class="img rounded" src="{% static 'images/blank-drop-picture.png' %}" alt="">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
+                                        {{ drop.Typ }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div> 
+         </div>
+    </div>
+{% endblock %}

@@ -31,7 +31,7 @@
                     <span aria-hidden="true">&laquo; Pierwsza</span>
                   </a>
                 </li>
-                <li class="page-item"><a class="page-link" href="?page={{ topics.previous_page_number }}">Poprzednia</a></li>    
+                <li class="page-item"><a class="page-link" href="?page={{ topics.previous_page_number }}">Poprzednia</a></li>
             {% endif %}
             <li class="page-item"><a class="page-link">Strona {{ topics.number }} z {{ topics.paginator.num_pages }}</a></li>
             {% if topics.has_next %}
@@ -41,7 +41,7 @@
                     <span aria-hidden="true">Ostatnia &raquo;</span>
                   </a>
                 </li>
-            {% endif %}  
+            {% endif %}
           </ul>
         </nav>
     </div>
