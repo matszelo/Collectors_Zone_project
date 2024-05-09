@@ -7,7 +7,7 @@
                 DODAJ NOWY POST
             </div>    
             <div class="card-body pb-0">
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                         <div class="mb-2">
                         <label for="exampleInputText" class="form-label mb-0">Tytuł</label>
@@ -17,9 +17,15 @@
                         <label for="exampleInputText" class="form-label mb-0">Kategoria</label>
                         {{ form.Kategoria }}
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-0">
                         <label for="exampleInputText" class="form-label mb-0">Opis</label>
                         {{ form.Opis }}
+                        </div>
+                        <div class="card-body">
+                            <label for="exampleTextArea" class="form-label mb-1">Grafika posta</label>
+                            <div class="card-body border rounded" style="border: #0dcaf0">
+                                {{ form.Zdjęcia }}
+                            </div>    
                         </div>
                     <div class="d-flex justify-content-center">
                         <input class="btn btn-sm fw-semibold d-flex justify-content-center mt-0 mb-2" type="submit" value="Dodaj post" style="background-color: #fd7e14">

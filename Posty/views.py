@@ -21,7 +21,7 @@ def post_details(request, pk):
 def add_post(request):
     submitted = False
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('Posty:all_posts')
@@ -34,7 +34,7 @@ def add_post(request):
 
 def update_post(request, pk):
     post = Post.objects.get(pk=pk)
-    form = PostForm(request.POST or None, instance=post)
+    form = PostForm(request.POST or None, request .FILES or None, instance=post)
     if form.is_valid():
         form.save()
         return redirect('Posty:post_details', pk)
