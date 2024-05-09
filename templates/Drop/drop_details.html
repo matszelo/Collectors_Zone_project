@@ -8,7 +8,7 @@
             </div>
             <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col text-start">
                             {% if drop.Zdjęcia %}
                                 <img class="img mt-2 rounded" src="{{ drop.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
                             {% else %}
@@ -16,6 +16,11 @@
                             {% endif %}
                         </div>
                         <div class="col-10 fw-semibold">
+                            <div class="card border-black mb-2 mt-2" style="width: fit-content; border-width: medium">
+                              <div class="card-body">
+                                <p class="card-text">{{ drop.Dni_do }}</p>
+                              </div>
+                            </div>
                             Strona: <a href="{{ drop.Strona }}">{{ drop.Strona }}</a><br>
                             Cena: {{ drop.Cena }} zł<br>
                             Data dropu: {{ drop.Data }}<br>

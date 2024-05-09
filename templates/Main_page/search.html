@@ -5,11 +5,11 @@
          <div class="col">
             <div class="card">
                 <div class="card-header d-grid justify-content-center">
-                    <h1>Wyszukaj na stronie</h1>
+                    <h2 class="fw-semibold">Wyszukaj na stronie</h2>
                     <form method="POST" action="{% url 'Collectors_Zone:search' %}">
                         {% csrf_token %}
-                        <label for="exampleInputText" class="form-label mb-0"></label>
-                        <input type="text" class="form-control" name="searched" id="exampleInputText">
+                        <label for="exampleInputText" class="form-label"></label>
+                        <input type="text" class="form-control " name="searched" id="exampleInputText">
                         <div class="d-flex justify-content-center"> 
                             <button type="submit" class="btn btn-sm fw-semibold mt-2" style="background-color: #fd7e14">Szukaj</button>  
                         </div>    
