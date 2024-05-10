@@ -1,4 +1,5 @@
 {% extends 'Base_html/base.html' %}
+{%  load static %}
 {% block content %}
     {% if user.is_authenticated %}
     <div class="container-fluid mt-3 mb-3">
@@ -16,7 +17,13 @@
                         <div class="card mb-3">
                           <div class="card-body">
                               <div class="card-title">
-                                  <h5><a href="{% url 'Forum:topic_details' topic.pk %}">{{ topic.Tytuł }}</a> | {{ topic.Kategoria }}</h5>
+                                  <h5><a href="{% url 'Forum:topic_details' topic.pk %}">
+                                      {% if topic.Status_id == 1 %}
+                                        <img src="{% static 'bootstrap-icons-1.11.3/unlock-fill.svg' %}" alt="Lock" width="20" height="15">
+                                      {% else %}
+                                        <img src="{% static 'bootstrap-icons-1.11.3/lock-fill.svg' %}" alt="Lock" width="20" height="15">
+                                      {% endif %}
+                                      {{ topic.Tytuł }}</a> | {{ topic.Kategoria }}</h5>
                                   <p class="card-text text-truncate">{{ topic.Opis }}</p>
                               </div>
                           </div>
