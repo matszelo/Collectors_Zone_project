@@ -16,7 +16,7 @@ def login_user(request):
             login(request, user)
             return redirect('Collectors_Zone:home')
         else:
-            messages.success(request, 'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')
+            messages.success(request, 'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.', extra_tags='login')
             return redirect('login_user')
 
     else:
@@ -35,6 +35,7 @@ def register_user(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Twoje konto zostało poprawnie zarejestrowane! Zaloguj się aby zacząć z niego korzystać.', extra_tags='register')
             return redirect('login_user')
         else:
             messages.success(request,'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')
@@ -82,6 +83,7 @@ def update_password(request):
             form = ChangePasswordForm(current_user, request.POST)
             if form.is_valid():
                 form.save()
+                messages.success(request,'Twoje hasło zostało poprawnie zmienione. Zaloguj się ponownie używając nowego hasła', extra_tags='password_change')
                 return redirect('login_user')
             else:
                 messages.success(request,'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')

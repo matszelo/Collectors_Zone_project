@@ -2,12 +2,13 @@ from datetime import timezone
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import TopicForm, CommentForm
 from .models import Temat
 
 
 def all_topics(request):
-    Topics = Temat.objects.all().order_by('-Dodano')
+    Topics = Temat.objects.all().order_by('-id')
     paginator = Paginator(Temat.objects.all(), 6)
     page = request.GET.get('page')
     topics = paginator.get_page(page)
@@ -38,6 +39,7 @@ def add_topic(request):
             new_topic = form.save(commit=False)
             new_topic.Autor = request.user
             new_topic.save()
+            messages.success(request, 'Temat został poprawnie dodany!')
             return redirect('Forum:all_topics')
     else:
         form = TopicForm
