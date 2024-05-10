@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from .forms import RegisterForm, UpdateProfileForm, ProfilePicForm, ChangePasswordForm
 from .models import Profile
 
@@ -15,6 +16,7 @@ def login_user(request):
             login(request, user)
             return redirect('Collectors_Zone:home')
         else:
+            messages.success(request, 'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')
             return redirect('login_user')
 
     else:
@@ -23,6 +25,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
+    messages.success(request, 'Zostałeś poprawnie wylogowany!')
     return redirect('Collectors_Zone:home')
 
 
@@ -33,6 +36,9 @@ def register_user(request):
         if form.is_valid():
             form.save()
             return redirect('login_user')
+        else:
+            messages.success(request,'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')
+            return render(request, 'Loging_and_Register/register.html', {'form': form})
 
     return render(request, 'Loging_and_Register/register.html', {'form': form})
 

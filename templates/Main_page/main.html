@@ -1,6 +1,14 @@
 {% extends 'Base_html/base.html' %}
 {% load static %}
 {% block content %}
+    {% for msg in messages %}
+     <div class="container-fluid mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+     </div>
+    {% endfor %}
      <div class="container-fluid text-center pt-3" style="height: 160px">
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">

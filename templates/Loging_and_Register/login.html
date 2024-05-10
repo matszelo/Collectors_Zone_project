@@ -1,5 +1,13 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% for msg in messages %}
+         <div class="container-fluid mt-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ msg }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+         </div>
+    {% endfor %}
     <div class="d-flex justify-content-center" style="margin-top: 180px">
         <div class="card me-4 ms-4 shadow" style="width: 400px">
             <div class="card-header text-center">

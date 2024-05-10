@@ -1,6 +1,14 @@
 {% extends 'Base_html/base.html' %}
 {% load static %}
 {% block content %}
+    {% for msg in messages %}
+     <div class="container-fluid mt-3">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+     </div>
+    {% endfor %}
     <div class="container-fluid mt-3 mb-3">
          <div class="col">
             <div class="card">
@@ -9,7 +17,7 @@
                     <form method="POST" action="{% url 'Collectors_Zone:search' %}">
                         {% csrf_token %}
                         <label for="exampleInputText" class="form-label"></label>
-                        <input type="text" class="form-control " name="searched" id="exampleInputText">
+                        <input type="text" class="form-control" name="searched" id="exampleInputText">
                         <div class="d-flex justify-content-center"> 
                             <button type="submit" class="btn btn-sm fw-semibold mt-2" style="background-color: #fd7e14">Szukaj</button>  
                         </div>    

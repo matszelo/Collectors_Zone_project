@@ -25,7 +25,7 @@ class Temat(models.Model):
     Status = models.ForeignKey(Status, default=1, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.Tytuł
+        return self.Tytuł + " | " + str(self.Kategoria)
 
 
 class Komentarz(models.Model):

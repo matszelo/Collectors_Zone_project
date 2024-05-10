@@ -3,6 +3,7 @@ from django.db.models import Q
 from Posty.models import Post
 from Dropy.models import Drop
 from Forum.models import Temat
+from django.contrib import messages
 
 
 def home(request):
@@ -19,6 +20,10 @@ def search(request):
         drops = Drop.objects.filter(Q(Tytuł__icontains=searched) | Q(Data__icontains=searched))
         topics = Temat.objects.filter(Tytuł__icontains=searched)
 
-        return render(request, 'Main_page/search.html', {'searched': searched, 'posts': posts, 'drops': drops, 'topics': topics})
+        if not posts and not drops and not topics:
+            messages.success(request, 'Brak wyszukiwań dla podanej frazy.')
+            return render(request, 'Main_page/search.html', {})
+        else:
+            return render(request, 'Main_page/search.html', {'searched': searched, 'posts': posts, 'drops': drops, 'topics': topics})
     else:
         return render(request, 'Main_page/search.html', {})
