@@ -34,7 +34,26 @@
                     <div class="border border-bottom mt-1 mb-1 w-75">
                     </div>
                 </div>
-                <a href="{% url 'delete_profile' request.user.id %}" class="btn btn-danger btn-sm fw-semibold d-flex justify-content-center mb-3 mt-2">Usuń konto</a>
+                <a type="button" class="btn btn-danger btn-sm fw-semibold d-flex justify-content-center mb-3 mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Usuń konto
+                </a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Usuń konto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-center">
+                        Czy na pewno nie chcesz zachować swojego konta?  
+                      </div>
+                      <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Zachowaj konto</button>
+                        <a href="{% url 'delete_profile' request.user.id %}" type="button"  class="btn btn-danger">Usuń konto</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </div>    
