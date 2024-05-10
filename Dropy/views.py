@@ -46,4 +46,5 @@ def update_drop(request, pk):
 def delete_drop(request, pk):
     drop = Drop.objects.get(pk=pk)
     drop.delete()
+    messages.success(request, 'Drop został poprawnie usunięty.')
     return redirect('Dropy:all_drops')

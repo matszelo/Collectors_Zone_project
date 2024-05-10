@@ -47,4 +47,5 @@ def update_post(request, pk):
 def delete_post(request, pk):
     post = Post.objects.get(pk=pk)
     post.delete()
+    messages.success(request, 'Post został poprawnie usunięty.')
     return redirect('Posty:all_posts')
