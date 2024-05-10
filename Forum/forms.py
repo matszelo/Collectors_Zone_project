@@ -14,13 +14,14 @@ class TopicForm(ModelForm):
             'Opis': forms.Textarea(attrs={'class': 'form-control'}),
         }
 
+
 class CommentForm(ModelForm):
     Tekst = forms.CharField(required=True, widget=forms.Textarea(
         attrs={
             'class': 'form-control'
         }
-        ),
-    )
+    ),
+                            )
 
     class Meta:
         model = Komentarz

@@ -21,12 +21,28 @@
                             <div class="col">
                                 <div class="card mb-3">
                                   <div class="card-body">
+                                    <h6 class="fw-bold">POST</h6>  
                                     <h5 class="card-title"><a href="{% url 'Posty:post_details' post.pk %}">{{ post.Tytuł }}</a> | {{ post.Kategoria }}</h5>
                                     <p class="card-text text-truncate">{{ post.Opis }}</p>
                                   </div>
                                 </div>
                             </div>
                         {% endfor %}
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        {% if topics %}
+                            {% for topic in topics %}
+                                <div class="col">
+                                    <div class="card mb-3">
+                                      <div class="card-body">
+                                        <h6 class="fw-bold">FORUM</h6>
+                                        <h5 class="card-title"><a href="{% url 'Forum:topic_details' topic.pk %}">{{ topic.Tytuł }}</a> | {{ topic.Kategoria }}</h5>
+                                        <p class="card-text text-truncate">{{ topic.Opis }}</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                     {% endif %}
                     {% if drops %}
                         <div class="card-body hstack row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6 g-3">
@@ -39,6 +55,7 @@
                                         <img class="img rounded" src="{% static 'images/blank-drop-picture.png' %}" alt="">
                                     {% endif %}
                                     <div class="card-body">
+                                        <h6 class="fw-bold">DROP</h6>
                                         <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
                                         {{ drop.Typ }}
                                     </div>

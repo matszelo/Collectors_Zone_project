@@ -15,12 +15,8 @@
                                 <img class="img mt-2 rounded" src="{% static 'images/blank-drop-picture.png' %}" style="height: 200px; width: 200px" alt="">
                             {% endif %}
                         </div>
-                        <div class="col-10 fw-semibold">
-                            <div class="card border-black mb-2 mt-2" style="width: fit-content; border-width: medium">
-                              <div class="card-body">
-                                <p class="card-text">{{ drop.Dni_do }}</p>
-                              </div>
-                            </div>
+                        <div class="col-10 mt-2 fw-semibold">
+                            <h5 class="fw-bold">{{ drop.Dni_do }}</h5>
                             Strona: <a href="{{ drop.Strona }}">{{ drop.Strona }}</a><br>
                             Cena: {{ drop.Cena }} zł<br>
                             Data dropu: {{ drop.Data }}<br>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.db.models import Q
 from Posty.models import Post
 from Dropy.models import Drop
+from Forum.models import Temat
 
 
 def home(request):
@@ -16,7 +17,8 @@ def search(request):
         searched = request.POST['searched']
         posts = Post.objects.filter(Q(Tytuł__icontains=searched) | Q(Opis__icontains=searched))
         drops = Drop.objects.filter(Q(Tytuł__icontains=searched) | Q(Data__icontains=searched))
+        topics = Temat.objects.filter(Tytuł__icontains=searched)
 
-        return render(request, 'Main_page/search.html', {'searched': searched, 'posts': posts, 'drops': drops})
+        return render(request, 'Main_page/search.html', {'searched': searched, 'posts': posts, 'drops': drops, 'topics': topics})
     else:
         return render(request, 'Main_page/search.html', {})

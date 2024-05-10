@@ -7,6 +7,15 @@
                 <h1>{{ topic.Tytuł }} | {{ topic.Kategoria }}</h1>
             </div>
              <div class="card-body container-fluid">
+                {% if topic.Status_id == 1 %}
+                    <div class="card mb-2 bg-success text-white text-center fw-semibold">
+                        Temat: {{ topic.Status }}
+                    </div>
+                {% else %}
+                    <div class="card mb-2 text-white text-center fw-semibold" style="background-color: #6c757d">
+                        Temat: {{ topic.Status }}
+                    </div>
+                {% endif %}    
                 <div class="card mt-1 mb-2">
                     <div class="card-body fw-bold h5">
                     {{ topic.Opis }}
@@ -26,7 +35,7 @@
                     </div>    
                 </div>
                 <div class="mt-3 mb-3 fw-bold h5">Komentarze:</div>
-                {% if not topic.komentarze.all %}
+                {% if not topic.komentarze.all and topic.Status_id == 1 %}
                     Brak komentarzy...
                     <br>
                     <br>
@@ -41,8 +50,11 @@
                                 <input class="btn btn-sm fw-semibold d-flex justify-content-center mt-0 mb-2" type="submit" value="Dodaj komentarz" style="background-color: #fd7e14">
                             </div>  
                         </form>
-                    {% endif %}  
-                {% else %}
+                    {% endif %}
+                {% elif not topic.komentarze.all and topic.Status_id == 2 %}
+                    Brak komentarzy...
+                {% endif %}    
+                {% if topic.komentarze.all and topic.Status_id == 1 %}
                     {% for komentarz in topic.komentarze.all %}
                         <strong>
                         {% if komentarz.Autor.profile.profile_pic %}
@@ -73,6 +85,24 @@
                             </div>  
                         </form>
                     {% endif %}  
+                {% elif topic.komentarze.all and topic.Status_id == 2 %}   
+                    {% for komentarz in topic.komentarze.all %}
+                        <strong>
+                        {% if komentarz.Autor.profile.profile_pic %}
+                            <img class="img-fluid rounded-circle" src="{{ komentarz.Autor.profile.profile_pic.url }}" style="height: 35px; width: 35px" alt="">
+                        {% else %}
+                            <img class="img-fluid rounded-circle" src="{% static 'images/blank-profile-picture.png' %}" style="height: 35px; width: 35px" alt="">
+                        {% endif %}
+                        {% if komentarz.Autor.profile.user.id %}
+                            <a href="{% url 'user_profile' komentarz.Autor.profile.user.id %}">{{ komentarz.Autor }}</a>
+                        {% else %}
+                            Konto usunięte
+                        {% endif %}
+                        - {{ komentarz.Dodano }}
+                        </strong>
+                        <br>
+                        <p class="fw-medium">{{ komentarz.Tekst }}</p>
+                    {% endfor %}
                 {% endif %}
              </div>
     </div>
