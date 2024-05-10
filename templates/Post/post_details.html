@@ -1,61 +1,71 @@
 {% extends 'Base_html/base.html' %}
 {% load static %}
 {% block content %}
-     <div class="card mt-4 ms-4 me-4">
-        <div class="card-header">
-            <h1>{{ post.Tytuł }} - {{ post.Kategoria }}</h1>
-        </div>    
-        <div class="card-body">
-            <div class="row">
-                {% if post.Zdjęcia %}
-                <div class="col text-start">
-                      <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
-                </div>
-                <div class="col-10 fw-semibold">
-                    {{ post.Opis }}
-                </div>
-                {% else %}
-                <div class="col-12 fw-semibold">
-                    {{ post.Opis }}
-                </div>    
-                {% endif %}
+    {% for msg in messages %}
+     <div class="container-fluid mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        </div>   
-        <div class="card-footer">
-            {% if user.is_authenticated and user.is_staff %}
-                <div class="container-fluid text-center">
-                    <div class="row justify-content-center">
-                        <div class="col-4 d-grid">
-                            <a class="btn btn-warning" href="{% url 'Posty:update_post' post.pk %}" role="button">
-                                Edytuj post
-                            </a>
-                        </div>
-                        <div class="col-4 d-grid hstack">
-                            <a role="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Usuń post
-                            </a>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Usuń post</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+     </div>
+    {% endfor %}
+    {% if post %}
+         <div class="card mt-4 ms-4 me-4">
+            <div class="card-header">
+                <h1>{{ post.Tytuł }} - {{ post.Kategoria }}</h1>
+            </div>    
+            <div class="card-body">
+                <div class="row">
+                    {% if post.Zdjęcia %}
+                    <div class="col text-start">
+                          <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
+                    </div>
+                    <div class="col-10 fw-semibold">
+                        {{ post.Opis }}
+                    </div>
+                    {% else %}
+                    <div class="col-12 fw-semibold">
+                        {{ post.Opis }}
+                    </div>    
+                    {% endif %}
+                </div>
+            </div>   
+            <div class="card-footer">
+                {% if user.is_authenticated and user.is_staff %}
+                    <div class="container-fluid text-center">
+                        <div class="row justify-content-center">
+                            <div class="col-4 d-grid">
+                                <a class="btn btn-warning" href="{% url 'Posty:update_post' post.pk %}" role="button">
+                                    Edytuj post
+                                </a>
+                            </div>
+                            <div class="col-4 d-grid hstack">
+                                <a role="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Usuń post
+                                </a>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Usuń post</h1>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                           Czy na pewno chcesz usunąć wybrany post?<br><br>
+                                           <p class="fw-semibold">{{ post.Tytuł }} - {{ post.Kategoria }}</p>
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
+                                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Wróć</button>
+                                          <a href="{% url 'Posty:delete_post' post.pk %}" type="button"  class="btn btn-danger">Usuń post</a>
+                                        </div>
+                                      </div>
                                     </div>
-                                    <div class="modal-body text-center">
-                                       Czy na pewno chcesz usunąć wybrany post?<br><br>
-                                       <p class="fw-semibold">{{ post.Tytuł }} - {{ post.Kategoria }}</p>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                      <button type="button" class="btn btn-success" data-bs-dismiss="modal">Wróć</button>
-                                      <a href="{% url 'Posty:delete_post' post.pk %}" type="button"  class="btn btn-danger">Usuń post</a>
-                                    </div>
-                                  </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        </div>
-     </div>
+                {% endif %}
+            </div>
+         </div>
+    {% endif %}
 {% endblock %}

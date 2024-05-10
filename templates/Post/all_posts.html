@@ -1,5 +1,13 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% for msg in messages %}
+     <div class="container-fluid mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+     </div>
+    {% endfor %}
     <div class="container-fluid mt-3 mb-3">
          <div class="col">
             <div class="card">

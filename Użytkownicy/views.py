@@ -54,6 +54,7 @@ def user_profile(request, pk):
 def delete_profile(request, pk):
     profile = User.objects.get(pk=pk)
     profile.delete()
+    messages.success(request, 'Twoje konto zostało usunięte.')
     return redirect('Collectors_Zone:home')
 
 
@@ -66,6 +67,7 @@ def update_profile(request, pk):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.success(request, 'Zmiany zostały poprawnie zapisane')
             return redirect('user_profile', pk)
         return render(request, 'Profile/update_profile.html',
                       {'profile': profile, 'user_form': user_form, 'profile_form': profile_form})
@@ -82,7 +84,8 @@ def update_password(request):
                 form.save()
                 return redirect('login_user')
             else:
-                return redirect('password_change')
+                messages.success(request,'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.')
+                return render(request,'Profile/password_change.html', {'form': form})
         else:
             form = ChangePasswordForm(current_user)
             return render(request, 'Profile/password_change.html', {'form': form})

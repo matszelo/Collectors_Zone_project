@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .forms import PostForm
 from .models import Post
 
@@ -24,6 +25,7 @@ def add_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Post został poprawnie dodany!')
             return redirect('Posty:all_posts')
     else:
         form = PostForm
@@ -37,6 +39,7 @@ def update_post(request, pk):
     form = PostForm(request.POST or None, request .FILES or None, instance=post)
     if form.is_valid():
         form.save()
+        messages.success(request, 'Zmiany zostały poprawnie zapisane.')
         return redirect('Posty:post_details', pk)
     return render(request, 'Post/update_post.html', {'post': post, 'form': form})
 

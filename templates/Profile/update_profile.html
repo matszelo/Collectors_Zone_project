@@ -1,5 +1,13 @@
 {% extends 'Base_html/base.html' %}
 {% block content %}
+    {% for msg in messages %}
+     <div class="container-fluid mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ msg }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+     </div>
+    {% endfor %}
     <div class="d-flex justify-content-center mb-3" style="margin-top: 25px">
         <div class="card me-4 ms-4 shadow" style="width: 400px">
             <div class="card-header text-center">
@@ -45,7 +53,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body text-center">
-                        Czy na pewno nie chcesz zachować swojego konta?  
+                        Czy na pewno nie chcesz zachować swojego konta?
                       </div>
                       <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-success" data-bs-dismiss="modal">Zachowaj konto</button>
