@@ -108,8 +108,17 @@
                  </div>
         </div>
         {% else %}
-            <h1>Tylko zalogowani użytkownicy mogą korzystać z forum</h1>
-            <a href="{% url 'login_user' %}">Przejdź do strony logowania</a>
+            <div class="d-flex justify-content-center" style="margin-top: 200px">
+            <div class="card me-4 ms-4 shadow" style="width: 400px">
+                <div class="card-header text-center">
+                    BRAK DOSTĘPU
+                </div>    
+                <div class="card-body pt-3 pb-3 pb-0 text-center">
+                    <p>Tylko zalogowani użytkownicy mogą korzystać z forum.</p>
+                    <a href="{% url 'login_user' %}">Przejdź do strony logowania</a>
+                </div>
+            </div>
+        </div>
         {% endif %}
     {% endif %}
 {% endblock %}

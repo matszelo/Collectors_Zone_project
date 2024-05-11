@@ -43,7 +43,7 @@
             {% if drops.has_previous %}
                 <li class="page-item">
                   <a class="page-link" href="?page=1" aria-label="Previous">
-                    <span aria-hidden="true">&laquo; Pierwsza</span>
+                    <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
                 <li class="page-item"><a class="page-link" href="?page={{ drops.previous_page_number }}">Poprzednia</a></li>    
@@ -53,7 +53,7 @@
                 <li class="page-item"><a class="page-link" href="?page={{ drops.next_page_number }}">Następna</a></li>
                 <li class="page-item">
                   <a class="page-link" href="?page={{ drops.paginator.num_pages }}" aria-label="Next">
-                    <span aria-hidden="true">Ostatnia &raquo;</span>
+                    <span aria-hidden="true">&raquo;</span>
                   </a>
                 </li>
             {% endif %}  

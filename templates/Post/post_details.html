@@ -18,9 +18,9 @@
                 <div class="row">
                     {% if post.Zdjęcia %}
                     <div class="col text-start">
-                          <img class="img mt-2 rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
+                          <img class="img rounded" src="{{ post.Zdjęcia.url }}" style="height: 200px; width: 200px" alt="">
                     </div>
-                    <div class="col-10 fw-semibold">
+                    <div class="col-10 mt-2 fw-semibold">
                         {{ post.Opis }}
                     </div>
                     {% else %}
