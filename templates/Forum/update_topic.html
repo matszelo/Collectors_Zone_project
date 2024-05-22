@@ -1,0 +1,79 @@
+{% extends 'Base_html/base.html' %}
+{% block content %}
+    {% if user.is_authenticated and user.is_staff %}
+     <div class="d-flex justify-content-center mb-4" style="margin-top: 30px">
+        <div class="card me-4 ms-4 shadow" style="width: 400px">
+            <div class="card-header text-center">
+                EDYCJA TEMATU
+            </div>    
+            <div class="card-body pb-0">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="mb-2">
+                            <label for="exampleInputText" class="form-label mb-0">Tytuł</label>
+                            {{ form.Tytuł }}
+                            </div>
+                            <div class="mb-2">
+                            <label for="exampleInputText" class="form-label mb-0">Kategoria</label>
+                            {{ form.Kategoria }}
+                            </div>
+                            <div class="mb-2">
+                            <label for="exampleInputText" class="form-label mb-0">Opis</label>
+                            {{ form.Opis }}
+                            </div>
+                            <div class="mb-2">
+                            <label for="exampleInputText" class="form-label mb-0">Status</label>
+                            {{ form.Status }}
+                            </div>
+                        <div class="d-flex justify-content-center">
+                        <input class="btn btn-sm fw-semibold d-flex justify-content-center mt-0 mb-2" type="submit" value="Zakończ edycję tematu" style="background-color: #fd7e14">
+                        </div>
+                </form>
+            </div>
+        </div>
+     </div>
+    {% elif user.id == topic.Autor.id %}
+        <div class="d-flex justify-content-center mb-4" style="margin-top: 30px">
+            <div class="card me-4 ms-4 shadow" style="width: 400px">
+                <div class="card-header text-center">
+                    EDYCJA TEMATU
+                </div>    
+                <div class="card-body pb-0">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <div class="mb-2">
+                                <label for="exampleInputText" class="form-label mb-0">Tytuł</label>
+                                {{ form.Tytuł }}
+                                </div>
+                                <div class="mb-2">
+                                <label for="exampleInputText" class="form-label mb-0">Kategoria</label>
+                                {{ form.Kategoria }}
+                                </div>
+                                <div class="mb-0">
+                                <label for="exampleInputText" class="form-label mb-0">Opis</label>
+                                {{ form.Opis }}
+                                </div>
+                                <div class="invisible">
+                                {{ form.Status }}
+                                </div>
+                            <div class="d-flex justify-content-center">
+                            <input class="btn btn-sm fw-semibold d-flex justify-content-center mt-0 mb-2" type="submit" value="Zakończ edycję tematu" style="background-color: #fd7e14">
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>    
+    {% else %}
+        <div class="d-flex justify-content-center" style="margin-top: 200px">
+            <div class="card me-4 ms-4 shadow" style="width: 400px">
+                <div class="card-header text-center">
+                    BRAK DOSTĘPU
+                </div>    
+                <div class="card-body pt-3 pb-3 pb-0 text-center">
+                    <p>Tylko administratorzy i moderatorzy strony oraz autorzy mogą edytować tematy.</p>
+                    <a href="{% url 'Forum:all_topics' %}">Przejdź do listy tematów</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
