@@ -34,7 +34,7 @@ def topic_details(request, pk):
 def add_topic(request):
     submitted = False
     if request.method == 'POST':
-        form = TopicForm(request.POST, request.FILES)
+        form = TopicForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.Autor = request.user
@@ -46,3 +46,20 @@ def add_topic(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'Forum/add_topic.html', {'form': form, 'submitted': submitted})
+
+
+def update_topic(request, pk):
+    topic = Temat.objects.get(pk=pk)
+    form = TopicForm(request.POST or None, request.FILES or None, instance=topic)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Zmiany zostały poprawnie zapisane.')
+        return redirect('Forum:topic_details', pk)
+    return render(request, 'Forum/update_topic.html', {'topic': topic, 'form': form})
+
+
+def delete_topic(request, pk):
+    topic = Temat.objects.get(pk=pk)
+    topic.delete()
+    messages.success(request, 'Twój temat został usunięty.')
+    return redirect('Forum:all_topics')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Status(models.Model):
@@ -26,6 +27,10 @@ class Temat(models.Model):
 
     def __str__(self):
         return self.Tytuł + " | " + str(self.Kategoria)
+
+    def Do_konca_edycji(self):
+        Do_konca_edycji = timezone.now() - timezone.timedelta(seconds=60 * 15)
+        return self.Dodano >= Do_konca_edycji
 
 
 class Komentarz(models.Model):

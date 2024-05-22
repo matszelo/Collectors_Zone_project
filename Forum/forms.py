@@ -6,12 +6,13 @@ from .models import Temat, Komentarz
 class TopicForm(ModelForm):
     class Meta:
         model = Temat
-        fields = ('Tytuł', 'Kategoria', 'Opis')
+        fields = ('Tytuł', 'Kategoria', 'Opis', 'Status')
 
         widgets = {
             'Tytuł': forms.TextInput(attrs={'class': 'form-control'}),
             'Kategoria': forms.Select(attrs={'class': 'form-control'}),
             'Opis': forms.Textarea(attrs={'class': 'form-control'}),
+            'Status': forms.Select(attrs={'class': 'form-control'}),
         }
 
 

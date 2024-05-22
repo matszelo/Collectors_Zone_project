@@ -21,7 +21,6 @@ class Drop(models.Model):
     def __str__(self):
         return self.Tytuł
 
-    @property
     def Dni_do(self):
         dzisiaj = date.today()
         dni_do = self.Data - dzisiaj
