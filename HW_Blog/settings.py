@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Utworzone aplikacje
-    'Collectors_Zone',
+    'Main_site',
     'Użytkownicy',
     'Posty',
     'Dropy',

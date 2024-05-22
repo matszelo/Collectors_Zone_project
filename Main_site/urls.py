@@ -1,9 +1,9 @@
 from django.urls import path
-from Collectors_Zone import views
+from Main_site import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-app_name = 'Collectors_Zone'
+app_name = 'Main_site'
 urlpatterns = [
     path('', views.home, name='home'),
     path('search/', views.search, name='search'),

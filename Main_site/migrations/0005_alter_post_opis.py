@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Collectors_Zone', '0004_alter_kategoria_nazwa'),
+        ('Main_site', '0004_alter_kategoria_nazwa'),
     ]
 
     operations = [

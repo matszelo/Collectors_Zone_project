@@ -7,7 +7,7 @@ from django.contrib import messages
 
 
 def home(request):
-    Posts = Post.objects.all()[:8]
+    Posts = Post.objects.all()[:3]
     Drops = Drop.objects.all().order_by('-Data')[:3]
     context = {'Posts': Posts, 'Drops': Drops}
     return render(request, 'Main_page/main.html', context)

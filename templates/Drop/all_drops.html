@@ -29,7 +29,7 @@
                                     <img class="img rounded" src="{% static 'images/blank-drop-picture.png' %}" alt="">
                                 {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
+                                    <h5 class="card-title text-truncate"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
                                     {{ drop.Typ }}
                                 </div>
                             </div>

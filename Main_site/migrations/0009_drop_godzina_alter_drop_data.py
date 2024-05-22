@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Collectors_Zone', '0008_drop'),
+        ('Main_site', '0008_drop'),
     ]
 
     operations = [

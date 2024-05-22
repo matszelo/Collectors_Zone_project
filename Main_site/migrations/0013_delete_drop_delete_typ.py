@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Collectors_Zone', '0012_remove_post_kategoria_delete_kategoria_delete_post'),
+        ('Main_site', '0012_remove_post_kategoria_delete_kategoria_delete_post'),
     ]
 
     operations = [

@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-header d-grid justify-content-center">
                     <h2 class="fw-semibold">Wyszukaj na stronie</h2>
-                    <form method="POST" action="{% url 'Collectors_Zone:search' %}">
+                    <form method="POST" action="{% url 'Main_site:search' %}">
                         {% csrf_token %}
                         <label for="exampleInputText" class="form-label"></label>
                         <input type="text" class="form-control" name="searched" id="exampleInputText">
@@ -30,7 +30,7 @@
                                 <div class="card mb-3">
                                   <div class="card-body">
                                     <h6 class="fw-bold">POST</h6>  
-                                    <h5 class="card-title"><a href="{% url 'Posty:post_details' post.pk %}">{{ post.Tytuł }}</a> | {{ post.Kategoria }}</h5>
+                                    <h5 class="card-title text-truncate"><a href="{% url 'Posty:post_details' post.pk %}">{{ post.Tytuł }}</a> | {{ post.Kategoria }}</h5>
                                     <p class="card-text text-truncate">{{ post.Opis }}</p>
                                   </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     {% endif %}
                                     <div class="card-body">
                                         <h6 class="fw-bold">DROP</h6>
-                                        <h5 class="card-title"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
+                                        <h5 class="card-title text-truncate"><a href="{% url 'Dropy:drop_details' drop.pk %}">{{ drop.Tytuł }}</a></h5>
                                         {{ drop.Typ }}
                                     </div>
                                 </div>

@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Collectors_Zone', '0001_initial'),
+        ('Main_site', '0001_initial'),
     ]
 
     operations = [
@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='post',
             name='Kategoria',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Collectors_Zone.kategoria'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Main_site.kategoria'),
         ),
     ]

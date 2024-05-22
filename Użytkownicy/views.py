@@ -14,7 +14,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect('Collectors_Zone:home')
+            return redirect('Main_site:home')
         else:
             messages.success(request, 'Błąd! Sprawdź poprawność wpisanych danych i spróbuj jeszcze raz.', extra_tags='login')
             return redirect('login_user')
@@ -26,7 +26,7 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     messages.success(request, 'Zostałeś poprawnie wylogowany!')
-    return redirect('Collectors_Zone:home')
+    return redirect('Main_site:home')
 
 
 def register_user(request):
@@ -49,14 +49,14 @@ def user_profile(request, pk):
         profile = Profile.objects.get(user_id=pk)
         return render(request, 'Profile/user_profile.html', {'profile': profile})
     else:
-        return redirect('Collectors_Zone:home')
+        return redirect('Main_site:home')
 
 
 def delete_profile(request, pk):
     profile = User.objects.get(pk=pk)
     profile.delete()
     messages.success(request, 'Twoje konto zostało usunięte.')
-    return redirect('Collectors_Zone:home')
+    return redirect('Main_site:home')
 
 
 def update_profile(request, pk):
@@ -73,7 +73,7 @@ def update_profile(request, pk):
         return render(request, 'Profile/update_profile.html',
                       {'profile': profile, 'user_form': user_form, 'profile_form': profile_form})
     else:
-        return redirect('Collectors_Zone:home')
+        return redirect('Main_site:home')
 
 
 def update_password(request):
@@ -92,4 +92,4 @@ def update_password(request):
             form = ChangePasswordForm(current_user)
             return render(request, 'Profile/password_change.html', {'form': form})
     else:
-        return redirect('Collectors_Zone:home')
+        return redirect('Main_site:home')
